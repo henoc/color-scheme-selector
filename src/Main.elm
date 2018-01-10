@@ -5,37 +5,42 @@ import Html.Attributes exposing (href, class, style)
 import Material
 import Material.Scheme
 import Material.Button as Button
-import Material.Options as Options exposing (css)
-import Material.Card as Card
-import Material.Color as Color
 import Material.Icon as Icon
+import Material.Options as Options
+import Color exposing (Color)
+import Color.Convert exposing (..)
+import Random exposing (map3, int, generate)
+import Utils
 
 type alias Model =
   {
-    count: Int,
+    colors: List Color,
     mdl: Material.Model
   }
 
 model: Model
 model =
   {
-    count = 0,
+    colors = [Color.black, Color.white, Color.gray],
     mdl = Material.model
   }
 
 -- ACTION, UPDATE
 
-type Msg = Increase | Reset | Mdl (Material.Msg Msg)
+type Msg = Mdl (Material.Msg Msg) | SetRandomColor Int Color | Roll Int
 
 update: Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
-    Increase ->
-      {model| count = model.count + 1} ! []
-    Reset ->
-      {model| count = 0} ! []
     Mdl msg_ ->
       Material.update Mdl msg_ model
+    Roll panelNo ->
+      model ! [generate (SetRandomColor panelNo) <| map3 Color.rgb (int 0 255) (int 0 255) (int 0 255)]
+    SetRandomColor panelNo newColor ->
+      let
+        newColors = Utils.replace model.colors panelNo newColor
+      in
+      {model | colors = newColors} ! []
 
 -- VIEW
 
@@ -62,35 +67,42 @@ view model =
         [
           style [("display", "flex")]
         ]
-        [
-          Card.view
-            [
-              css "width" "10%",
-              Color.background (Color.color Color.Pink Color.S500)
-            ]
-            [
-              Card.title [] [ Card.head [Color.text Color.white] [text "Click anywhere"]],
-              Card.actions [] [
-                 Button.render Mdl [0] model.mdl
-                  [
-                    Button.icon
-                  ]
-                  [ Icon.i "cached"]
-              ]
-            ],
-          Card.view
-            [
-              Color.background (Color.color Color.Blue Color.S500)
-            ]
-            [Card.title [] [ Card.head [Color.text Color.white] [text "Click anywhere"]]],
-          Card.view
-            [
-              Color.background (Color.color Color.Green Color.S500)
-            ]
-            [Card.title [] [ Card.head [Color.text Color.white] [text "Click anywhere"]]]
-        ]
+        (colorPanels model.colors 1)
     ]
     |> Material.Scheme.top
+
+colorPanels : List Color -> Int -> List (Html Msg)
+colorPanels colors counter =
+  let
+    len = List.length colors
+    loop colors i panelNo =
+      case colors of
+      [] -> []
+      hd :: tl ->
+        div [
+          style [("width", toString (100.0 / toFloat len) ++ "%" ), ("height", "200px"), ("background-color", (colorToHex hd))]
+        ] [
+          Button.render Mdl [i] model.mdl
+            [
+              Button.fab,
+              Options.onClick <| Roll panelNo
+            ]
+            [ Icon.i "cached"],
+          Button.render Mdl [i + 1] model.mdl
+            [
+              Button.fab
+            ]
+            [ Icon.i "add"],
+          Button.render Mdl [i + 2] model.mdl
+            [
+              Button.fab
+            ]
+            [ Icon.i "remove"]
+        ] :: loop tl (i + 3) (panelNo + 1)
+  in
+  loop colors counter 0
+  
+
 
 main: Program Never Model Msg
 main =
