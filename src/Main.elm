@@ -19,8 +19,7 @@ type alias Model =
     colors: List Color,
     mdl: Material.Model,
     colorPicker: ColorPicker.State,
-    viewColorPicker: Maybe Int,
-    textColor: String
+    viewColorPicker: Maybe Int
   }
 
 model: Model
