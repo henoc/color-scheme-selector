@@ -16414,15 +16414,46 @@ var _eskimoblood$elm_color_extra$Color_Convert$Lab = F3(
 	function (a, b, c) {
 		return {l: a, a: b, b: c};
 	});
-var _user$project$Utils$replace = F3(
-	function (lst, k, item) {
+var _user$project$Utils$remove = F2(
+	function (lst, k) {
 		var _p0 = lst;
 		if (_p0.ctor === '::') {
 			var _p1 = _p0._1;
-			return _elm_lang$core$Native_Utils.eq(k, 0) ? {ctor: '::', _0: item, _1: _p1} : {
+			return _elm_lang$core$Native_Utils.eq(k, 0) ? _p1 : {
 				ctor: '::',
 				_0: _p0._0,
-				_1: A3(_user$project$Utils$replace, _p1, k - 1, item)
+				_1: A2(_user$project$Utils$remove, _p1, k - 1)
+			};
+		} else {
+			return lst;
+		}
+	});
+var _user$project$Utils$insert = F3(
+	function (lst, k, item) {
+		if (_elm_lang$core$Native_Utils.eq(k, 0)) {
+			return {ctor: '::', _0: item, _1: lst};
+		} else {
+			var _p2 = lst;
+			if (_p2.ctor === '::') {
+				return {
+					ctor: '::',
+					_0: _p2._0,
+					_1: A3(_user$project$Utils$insert, _p2._1, k - 1, item)
+				};
+			} else {
+				return lst;
+			}
+		}
+	});
+var _user$project$Utils$replace = F3(
+	function (lst, k, item) {
+		var _p3 = lst;
+		if (_p3.ctor === '::') {
+			var _p4 = _p3._1;
+			return _elm_lang$core$Native_Utils.eq(k, 0) ? {ctor: '::', _0: item, _1: _p4} : {
+				ctor: '::',
+				_0: _p3._0,
+				_1: A3(_user$project$Utils$replace, _p4, k - 1, item)
 			};
 		} else {
 			return lst;
@@ -16431,14 +16462,22 @@ var _user$project$Utils$replace = F3(
 var _user$project$Main$model = {
 	colors: {
 		ctor: '::',
-		_0: _elm_lang$core$Color$black,
+		_0: _elm_lang$core$Color$darkGray,
 		_1: {
 			ctor: '::',
-			_0: _elm_lang$core$Color$white,
+			_0: _elm_lang$core$Color$lightGreen,
 			_1: {
 				ctor: '::',
-				_0: _elm_lang$core$Color$gray,
-				_1: {ctor: '[]'}
+				_0: _elm_lang$core$Color$lightBlue,
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$core$Color$lightBrown,
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$core$Color$lightYellow,
+						_1: {ctor: '[]'}
+					}
+				}
 			}
 		}
 	},
@@ -16447,6 +16486,17 @@ var _user$project$Main$model = {
 var _user$project$Main$Model = F2(
 	function (a, b) {
 		return {colors: a, mdl: b};
+	});
+var _user$project$Main$RemoveColor = function (a) {
+	return {ctor: 'RemoveColor', _0: a};
+};
+var _user$project$Main$InsertNewColor = F2(
+	function (a, b) {
+		return {ctor: 'InsertNewColor', _0: a, _1: b};
+	});
+var _user$project$Main$SetColor = F2(
+	function (a, b) {
+		return {ctor: 'SetColor', _0: a, _1: b};
 	});
 var _user$project$Main$Roll = function (a) {
 	return {ctor: 'Roll', _0: a};
@@ -16481,8 +16531,40 @@ var _user$project$Main$update = F2(
 								A2(_elm_lang$core$Random$int, 0, 255))),
 						_1: {ctor: '[]'}
 					});
-			default:
+			case 'SetRandomColor':
 				var newColors = A3(_user$project$Utils$replace, model.colors, _p0._0, _p0._1);
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{colors: newColors}),
+					{ctor: '[]'});
+			case 'SetColor':
+				var _p1 = _eskimoblood$elm_color_extra$Color_Convert$hexToColor(_p0._1);
+				if (_p1.ctor === 'Ok') {
+					var newColor = A3(_user$project$Utils$replace, model.colors, _p0._0, _p1._0);
+					return A2(
+						_elm_lang$core$Platform_Cmd_ops['!'],
+						_elm_lang$core$Native_Utils.update(
+							model,
+							{colors: newColor}),
+						{ctor: '[]'});
+				} else {
+					return A2(
+						_elm_lang$core$Platform_Cmd_ops['!'],
+						model,
+						{ctor: '[]'});
+				}
+			case 'InsertNewColor':
+				var newColors = A3(_user$project$Utils$insert, model.colors, _p0._0, _p0._1);
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{colors: newColors}),
+					{ctor: '[]'});
+			default:
+				var newColors = A2(_user$project$Utils$remove, model.colors, _p0._0);
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
@@ -16496,10 +16578,11 @@ var _user$project$Main$colorPanels = F2(
 		var len = _elm_lang$core$List$length(colors);
 		var loop = F3(
 			function (colors, i, panelNo) {
-				var _p1 = colors;
-				if (_p1.ctor === '[]') {
+				var _p2 = colors;
+				if (_p2.ctor === '[]') {
 					return {ctor: '[]'};
 				} else {
+					var _p3 = _p2._0;
 					return {
 						ctor: '::',
 						_0: A2(
@@ -16518,95 +16601,134 @@ var _user$project$Main$colorPanels = F2(
 													100.0 / _elm_lang$core$Basics$toFloat(len)),
 												'%')
 										},
-										_1: {
-											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'height', _1: '200px'},
-											_1: {
-												ctor: '::',
-												_0: {
-													ctor: '_Tuple2',
-													_0: 'background-color',
-													_1: _eskimoblood$elm_color_extra$Color_Convert$colorToHex(_p1._0)
-												},
-												_1: {ctor: '[]'}
-											}
-										}
+										_1: {ctor: '[]'}
 									}),
 								_1: {ctor: '[]'}
 							},
 							{
 								ctor: '::',
-								_0: A5(
-									_debois$elm_mdl$Material_Button$render,
-									_user$project$Main$Mdl,
+								_0: A2(
+									_elm_lang$html$Html$div,
 									{
 										ctor: '::',
-										_0: i,
+										_0: _elm_lang$html$Html_Attributes$style(
+											{
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 'width', _1: '100%'},
+												_1: {
+													ctor: '::',
+													_0: {ctor: '_Tuple2', _0: 'font-family', _1: 'monospace'},
+													_1: {ctor: '[]'}
+												}
+											}),
 										_1: {ctor: '[]'}
 									},
-									_user$project$Main$model.mdl,
 									{
-										ctor: '::',
-										_0: _debois$elm_mdl$Material_Button$fab,
-										_1: {
-											ctor: '::',
-											_0: _debois$elm_mdl$Material_Options$onClick(
-												_user$project$Main$Roll(panelNo)),
-											_1: {ctor: '[]'}
-										}
-									},
-									{
-										ctor: '::',
-										_0: _debois$elm_mdl$Material_Icon$i('cached'),
-										_1: {ctor: '[]'}
-									}),
-								_1: {
-									ctor: '::',
-									_0: A5(
-										_debois$elm_mdl$Material_Button$render,
-										_user$project$Main$Mdl,
-										{
-											ctor: '::',
-											_0: i + 1,
-											_1: {ctor: '[]'}
-										},
-										_user$project$Main$model.mdl,
-										{
-											ctor: '::',
-											_0: _debois$elm_mdl$Material_Button$fab,
-											_1: {ctor: '[]'}
-										},
-										{
-											ctor: '::',
-											_0: _debois$elm_mdl$Material_Icon$i('add'),
-											_1: {ctor: '[]'}
-										}),
-									_1: {
 										ctor: '::',
 										_0: A5(
 											_debois$elm_mdl$Material_Button$render,
 											_user$project$Main$Mdl,
 											{
 												ctor: '::',
-												_0: i + 2,
+												_0: i,
 												_1: {ctor: '[]'}
 											},
 											_user$project$Main$model.mdl,
 											{
 												ctor: '::',
-												_0: _debois$elm_mdl$Material_Button$fab,
+												_0: _debois$elm_mdl$Material_Options$onClick(
+													_user$project$Main$Roll(panelNo)),
 												_1: {ctor: '[]'}
 											},
 											{
 												ctor: '::',
-												_0: _debois$elm_mdl$Material_Icon$i('remove'),
+												_0: _debois$elm_mdl$Material_Icon$i('cached'),
 												_1: {ctor: '[]'}
 											}),
-										_1: {ctor: '[]'}
-									}
+										_1: {
+											ctor: '::',
+											_0: A5(
+												_debois$elm_mdl$Material_Button$render,
+												_user$project$Main$Mdl,
+												{
+													ctor: '::',
+													_0: i + 1,
+													_1: {ctor: '[]'}
+												},
+												_user$project$Main$model.mdl,
+												{
+													ctor: '::',
+													_0: _debois$elm_mdl$Material_Options$onClick(
+														A2(_user$project$Main$InsertNewColor, panelNo, _p3)),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: _debois$elm_mdl$Material_Icon$i('add'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A5(
+													_debois$elm_mdl$Material_Button$render,
+													_user$project$Main$Mdl,
+													{
+														ctor: '::',
+														_0: i + 2,
+														_1: {ctor: '[]'}
+													},
+													_user$project$Main$model.mdl,
+													{
+														ctor: '::',
+														_0: _debois$elm_mdl$Material_Options$onClick(
+															_user$project$Main$RemoveColor(panelNo)),
+														_1: {ctor: '[]'}
+													},
+													{
+														ctor: '::',
+														_0: _debois$elm_mdl$Material_Icon$i('remove'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html$text(
+														_eskimoblood$elm_color_extra$Color_Convert$colorToHex(_p3)),
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$div,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$style(
+												{
+													ctor: '::',
+													_0: {ctor: '_Tuple2', _0: 'width', _1: '100%'},
+													_1: {
+														ctor: '::',
+														_0: {ctor: '_Tuple2', _0: 'height', _1: '200px'},
+														_1: {
+															ctor: '::',
+															_0: {
+																ctor: '_Tuple2',
+																_0: 'background-color',
+																_1: _eskimoblood$elm_color_extra$Color_Convert$colorToHex(_p3)
+															},
+															_1: {ctor: '[]'}
+														}
+													}
+												}),
+											_1: {ctor: '[]'}
+										},
+										{ctor: '[]'}),
+									_1: {ctor: '[]'}
 								}
 							}),
-						_1: A3(loop, _p1._1, i + 3, panelNo + 1)
+						_1: A3(loop, _p2._1, i + 4, panelNo + 1)
 					};
 				}
 			});

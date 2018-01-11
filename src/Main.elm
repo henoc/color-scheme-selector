@@ -1,7 +1,7 @@
 module Main exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (href, class, style)
+import Html.Attributes exposing (href, class, style, type_)
 import Material
 import Material.Scheme
 import Material.Button as Button
@@ -21,13 +21,13 @@ type alias Model =
 model: Model
 model =
   {
-    colors = [Color.black, Color.white, Color.gray],
+    colors = [Color.darkGray, Color.lightGreen, Color.lightBlue, Color.lightBrown, Color.lightYellow],
     mdl = Material.model
   }
 
 -- ACTION, UPDATE
 
-type Msg = Mdl (Material.Msg Msg) | SetRandomColor Int Color | Roll Int
+type Msg = Mdl (Material.Msg Msg) | SetRandomColor Int Color | Roll Int | SetColor Int String | InsertNewColor Int Color | RemoveColor Int
 
 update: Msg -> Model -> (Model, Cmd Msg)
 update msg model =
@@ -39,6 +39,24 @@ update msg model =
     SetRandomColor panelNo newColor ->
       let
         newColors = Utils.replace model.colors panelNo newColor
+      in
+      {model | colors = newColors} ! []
+    SetColor panelNo colorString ->
+      case hexToColor colorString of
+        Ok c ->
+          let
+            newColor = Utils.replace model.colors panelNo c
+          in
+          {model | colors = newColor} ! []
+        Err s -> model ! []
+    InsertNewColor panelNo newColor ->
+      let
+        newColors = Utils.insert model.colors panelNo newColor
+      in
+      {model | colors = newColors} ! []
+    RemoveColor panelNo ->
+      let
+        newColors = Utils.remove model.colors panelNo
       in
       {model | colors = newColors} ! []
 
@@ -80,25 +98,34 @@ colorPanels colors counter =
       [] -> []
       hd :: tl ->
         div [
-          style [("width", toString (100.0 / toFloat len) ++ "%" ), ("height", "200px"), ("background-color", (colorToHex hd))]
+          style [("width", toString (100.0 / toFloat len) ++ "%" )]
         ] [
-          Button.render Mdl [i] model.mdl
-            [
-              Button.fab,
-              Options.onClick <| Roll panelNo
-            ]
-            [ Icon.i "cached"],
-          Button.render Mdl [i + 1] model.mdl
-            [
-              Button.fab
-            ]
-            [ Icon.i "add"],
-          Button.render Mdl [i + 2] model.mdl
-            [
-              Button.fab
-            ]
-            [ Icon.i "remove"]
-        ] :: loop tl (i + 3) (panelNo + 1)
+          -- ボタン部分
+          div [
+            style [("width", "100%" ), ("font-family", "monospace")]
+          ] [
+            Button.render Mdl [i] model.mdl
+              [
+                Options.onClick <| Roll panelNo
+              ]
+              [ Icon.i "cached"],
+            Button.render Mdl [i + 1] model.mdl
+              [
+                Options.onClick <| InsertNewColor panelNo hd
+              ]
+              [ Icon.i "add"],
+            Button.render Mdl [i + 2] model.mdl
+              [
+                Options.onClick <| RemoveColor panelNo
+              ]
+              [ Icon.i "remove"],
+            text <| colorToHex hd
+          ],
+          -- 色部分
+          div [
+            style [("width", "100%"), ("height", "200px"), ("background-color", (colorToHex hd))]
+          ] []
+        ] :: loop tl (i + 4) (panelNo + 1)
   in
   loop colors counter 0
   
