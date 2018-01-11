@@ -22,3 +22,12 @@ remove lst k = case lst of
     else hd :: remove tl (k - 1)
   [] -> lst
 
+getAt : List a -> Int -> Maybe a
+getAt lst k = case lst of
+  hd :: tl ->
+    if k == 0 then Just hd
+    else getAt tl (k - 1)
+  [] -> Nothing
+
+index : List a -> List Int
+index lst = List.range 0 (List.length lst - 1)
