@@ -1,7 +1,7 @@
 module Main exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (href, class, style, type_)
+import Html.Attributes exposing (href, class, style, type_, id)
 import Html.Events exposing (onMouseOver, onMouseLeave)
 import Material
 import Material.Scheme
@@ -19,7 +19,8 @@ type alias Model =
     colors: List Color,
     mdl: Material.Model,
     colorPicker: ColorPicker.State,
-    viewColorPicker: Maybe Int
+    viewColorPicker: Maybe Int,
+    textColor: String
   }
 
 model: Model
@@ -83,6 +84,7 @@ update msg model =
       {model | viewColorPicker = Just panelNo} ! []
     HideColorPicker ->
       {model | viewColorPicker = Nothing} ! []
+
 
 -- VIEW
 
@@ -162,7 +164,6 @@ colorPanels model counter =
         ] :: loop tl (i + 4) (panelNo + 1)
   in
   loop model.colors counter 0
-  
 
 
 main: Program Never Model Msg

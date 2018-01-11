@@ -1,6 +1,4 @@
-<!DOCTYPE HTML>
-<html><head><meta charset="UTF-8"><title>Main</title><style>html,head,body { padding:0; margin:0; }
-body { font-family: calibri, helvetica, arial, sans-serif; }</style><script type="text/javascript">
+
 (function() {
 'use strict';
 
@@ -136,6 +134,7 @@ function A9(fun, a, b, c, d, e, f, g, h, i)
     ? fun.func(a, b, c, d, e, f, g, h, i)
     : fun(a)(b)(c)(d)(e)(f)(g)(h)(i);
 }
+
 //import Native.List //
 
 var _elm_lang$core$Native_Array = function() {
@@ -1102,7 +1101,8 @@ return {
 	fromJSArray: fromJSArray
 };
 
-}();//import Native.Utils //
+}();
+//import Native.Utils //
 
 var _elm_lang$core$Native_Basics = function() {
 
@@ -1242,7 +1242,8 @@ return {
 	isInfinite: isInfinite
 };
 
-}();//import //
+}();
+//import //
 
 var _elm_lang$core$Native_Utils = function() {
 
@@ -1729,7 +1730,8 @@ return {
 	toString: toString
 };
 
-}();var _elm_lang$core$Basics$never = function (_p0) {
+}();
+var _elm_lang$core$Basics$never = function (_p0) {
 	never:
 	while (true) {
 		var _p1 = _p0;
@@ -1854,6 +1856,7 @@ var _elm_lang$core$Basics$LT = {ctor: 'LT'};
 var _elm_lang$core$Basics$JustOneMore = function (a) {
 	return {ctor: 'JustOneMore', _0: a};
 };
+
 var _elm_lang$core$Maybe$withDefault = F2(
 	function ($default, maybe) {
 		var _p0 = maybe;
@@ -1926,6 +1929,7 @@ var _elm_lang$core$Maybe$map5 = F6(
 			return _elm_lang$core$Maybe$Nothing;
 		}
 	});
+
 //import Native.Utils //
 
 var _elm_lang$core$Native_List = function() {
@@ -2062,7 +2066,8 @@ return {
 	sortWith: F2(sortWith)
 };
 
-}();var _elm_lang$core$List$sortWith = _elm_lang$core$Native_List.sortWith;
+}();
+var _elm_lang$core$List$sortWith = _elm_lang$core$Native_List.sortWith;
 var _elm_lang$core$List$sortBy = _elm_lang$core$Native_List.sortBy;
 var _elm_lang$core$List$sort = function (xs) {
 	return A2(_elm_lang$core$List$sortBy, _elm_lang$core$Basics$identity, xs);
@@ -2614,6 +2619,7 @@ var _elm_lang$core$List$indexedMap = F2(
 				_elm_lang$core$List$length(xs) - 1),
 			xs);
 	});
+
 var _elm_lang$core$Array$append = _elm_lang$core$Native_Array.append;
 var _elm_lang$core$Array$length = _elm_lang$core$Native_Array.length;
 var _elm_lang$core$Array$isEmpty = function (array) {
@@ -2668,6 +2674,7 @@ var _elm_lang$core$Array$repeat = F2(
 			_elm_lang$core$Basics$always(e));
 	});
 var _elm_lang$core$Array$Array = {ctor: 'Array'};
+
 //import Native.Utils //
 
 var _elm_lang$core$Native_Debug = function() {
@@ -2697,7 +2704,8 @@ return {
 	log: F2(log)
 };
 
-}();//import Maybe, Native.List, Native.Utils, Result //
+}();
+//import Maybe, Native.List, Native.Utils, Result //
 
 var _elm_lang$core$Native_String = function() {
 
@@ -3036,6 +3044,7 @@ return {
 };
 
 }();
+
 //import Native.Utils //
 
 var _elm_lang$core$Native_Char = function() {
@@ -3049,7 +3058,8 @@ return {
 	toLocaleLower: function(c) { return _elm_lang$core$Native_Utils.chr(c.toLocaleLowerCase()); }
 };
 
-}();var _elm_lang$core$Char$fromCode = _elm_lang$core$Native_Char.fromCode;
+}();
+var _elm_lang$core$Char$fromCode = _elm_lang$core$Native_Char.fromCode;
 var _elm_lang$core$Char$toCode = _elm_lang$core$Native_Char.toCode;
 var _elm_lang$core$Char$toLocaleLower = _elm_lang$core$Native_Char.toLocaleLower;
 var _elm_lang$core$Char$toLocaleUpper = _elm_lang$core$Native_Char.toLocaleUpper;
@@ -3091,6 +3101,7 @@ var _elm_lang$core$Char$isHexDigit = function ($char) {
 		_elm_lang$core$Native_Utils.chr('F'),
 		$char));
 };
+
 var _elm_lang$core$Result$toMaybe = function (result) {
 	var _p0 = result;
 	if (_p0.ctor === 'Ok') {
@@ -3232,6 +3243,7 @@ var _elm_lang$core$Result$fromMaybe = F2(
 			return _elm_lang$core$Result$Err(err);
 		}
 	});
+
 var _elm_lang$core$String$fromList = _elm_lang$core$Native_String.fromList;
 var _elm_lang$core$String$toList = _elm_lang$core$Native_String.toList;
 var _elm_lang$core$String$toFloat = _elm_lang$core$Native_String.toFloat;
@@ -3275,6 +3287,7 @@ var _elm_lang$core$String$fromChar = function ($char) {
 	return A2(_elm_lang$core$String$cons, $char, '');
 };
 var _elm_lang$core$String$isEmpty = _elm_lang$core$Native_String.isEmpty;
+
 var _elm_lang$core$Dict$foldr = F3(
 	function (f, acc, t) {
 		foldr:
@@ -4191,6 +4204,7 @@ var _elm_lang$core$Dict$diff = F2(
 			t1,
 			t2);
 	});
+
 //import Maybe, Native.Array, Native.List, Native.Utils, Result //
 
 var _elm_lang$core$Native_Json = function() {
@@ -4766,6 +4780,7 @@ return {
 };
 
 }();
+
 var _elm_lang$core$Json_Encode$list = _elm_lang$core$Native_Json.encodeList;
 var _elm_lang$core$Json_Encode$array = _elm_lang$core$Native_Json.encodeArray;
 var _elm_lang$core$Json_Encode$object = _elm_lang$core$Native_Json.encodeObject;
@@ -4776,6 +4791,7 @@ var _elm_lang$core$Json_Encode$int = _elm_lang$core$Native_Json.identity;
 var _elm_lang$core$Json_Encode$string = _elm_lang$core$Native_Json.identity;
 var _elm_lang$core$Json_Encode$encode = _elm_lang$core$Native_Json.encode;
 var _elm_lang$core$Json_Encode$Value = {ctor: 'Value'};
+
 var _elm_lang$core$Json_Decode$null = _elm_lang$core$Native_Json.decodeNull;
 var _elm_lang$core$Json_Decode$value = _elm_lang$core$Native_Json.decodePrimitive('value');
 var _elm_lang$core$Json_Decode$andThen = _elm_lang$core$Native_Json.andThen;
@@ -4838,8 +4854,10 @@ var _elm_lang$core$Json_Decode$int = _elm_lang$core$Native_Json.decodePrimitive(
 var _elm_lang$core$Json_Decode$bool = _elm_lang$core$Native_Json.decodePrimitive('bool');
 var _elm_lang$core$Json_Decode$string = _elm_lang$core$Native_Json.decodePrimitive('string');
 var _elm_lang$core$Json_Decode$Decoder = {ctor: 'Decoder'};
+
 var _elm_lang$core$Debug$crash = _elm_lang$core$Native_Debug.crash;
 var _elm_lang$core$Debug$log = _elm_lang$core$Native_Debug.log;
+
 var _elm_lang$core$Tuple$mapSecond = F2(
 	function (func, _p0) {
 		var _p1 = _p0;
@@ -4866,6 +4884,7 @@ var _elm_lang$core$Tuple$first = function (_p6) {
 	var _p7 = _p6;
 	return _p7._0;
 };
+
 //import //
 
 var _elm_lang$core$Native_Platform = function() {
@@ -5425,6 +5444,7 @@ return {
 };
 
 }();
+
 //import Native.Utils //
 
 var _elm_lang$core$Native_Scheduler = function() {
@@ -5705,7 +5725,8 @@ return {
 	rawSend: rawSend
 };
 
-}();var _elm_lang$core$Platform_Cmd$batch = _elm_lang$core$Native_Platform.batch;
+}();
+var _elm_lang$core$Platform_Cmd$batch = _elm_lang$core$Native_Platform.batch;
 var _elm_lang$core$Platform_Cmd$none = _elm_lang$core$Platform_Cmd$batch(
 	{ctor: '[]'});
 var _elm_lang$core$Platform_Cmd_ops = _elm_lang$core$Platform_Cmd_ops || {};
@@ -5719,11 +5740,13 @@ _elm_lang$core$Platform_Cmd_ops['!'] = F2(
 	});
 var _elm_lang$core$Platform_Cmd$map = _elm_lang$core$Native_Platform.map;
 var _elm_lang$core$Platform_Cmd$Cmd = {ctor: 'Cmd'};
+
 var _elm_lang$core$Platform_Sub$batch = _elm_lang$core$Native_Platform.batch;
 var _elm_lang$core$Platform_Sub$none = _elm_lang$core$Platform_Sub$batch(
 	{ctor: '[]'});
 var _elm_lang$core$Platform_Sub$map = _elm_lang$core$Native_Platform.map;
 var _elm_lang$core$Platform_Sub$Sub = {ctor: 'Sub'};
+
 var _elm_lang$core$Platform$hack = _elm_lang$core$Native_Scheduler.succeed;
 var _elm_lang$core$Platform$sendToSelf = _elm_lang$core$Native_Platform.sendToSelf;
 var _elm_lang$core$Platform$sendToApp = _elm_lang$core$Native_Platform.sendToApp;
@@ -5733,6 +5756,7 @@ var _elm_lang$core$Platform$Program = {ctor: 'Program'};
 var _elm_lang$core$Platform$Task = {ctor: 'Task'};
 var _elm_lang$core$Platform$ProcessId = {ctor: 'ProcessId'};
 var _elm_lang$core$Platform$Router = {ctor: 'Router'};
+
 var _debois$elm_dom$DOM$className = A2(
 	_elm_lang$core$Json_Decode$at,
 	{
@@ -5861,6 +5885,7 @@ var _debois$elm_dom$DOM$Rectangle = F4(
 	function (a, b, c, d) {
 		return {top: a, left: b, width: c, height: d};
 	});
+
 var _elm_lang$virtual_dom$VirtualDom_Debug$wrap;
 var _elm_lang$virtual_dom$VirtualDom_Debug$wrapWithFlags;
 
@@ -7742,6 +7767,7 @@ return {
 };
 
 }();
+
 var _elm_lang$virtual_dom$VirtualDom$programWithFlags = function (impl) {
 	return A2(_elm_lang$virtual_dom$Native_VirtualDom.programWithFlags, _elm_lang$virtual_dom$VirtualDom_Debug$wrapWithFlags, impl);
 };
@@ -7772,6 +7798,7 @@ var _elm_lang$virtual_dom$VirtualDom$Options = F2(
 	});
 var _elm_lang$virtual_dom$VirtualDom$Node = {ctor: 'Node'};
 var _elm_lang$virtual_dom$VirtualDom$Property = {ctor: 'Property'};
+
 var _elm_lang$html$Html$programWithFlags = _elm_lang$virtual_dom$VirtualDom$programWithFlags;
 var _elm_lang$html$Html$program = _elm_lang$virtual_dom$VirtualDom$program;
 var _elm_lang$html$Html$beginnerProgram = function (_p0) {
@@ -7896,6 +7923,7 @@ var _elm_lang$html$Html$details = _elm_lang$html$Html$node('details');
 var _elm_lang$html$Html$summary = _elm_lang$html$Html$node('summary');
 var _elm_lang$html$Html$menuitem = _elm_lang$html$Html$node('menuitem');
 var _elm_lang$html$Html$menu = _elm_lang$html$Html$node('menu');
+
 var _elm_lang$html$Html_Attributes$map = _elm_lang$virtual_dom$VirtualDom$mapProperty;
 var _elm_lang$html$Html_Attributes$attribute = _elm_lang$virtual_dom$VirtualDom$attribute;
 var _elm_lang$html$Html_Attributes$contextmenu = function (value) {
@@ -8245,6 +8273,7 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 				A2(_elm_lang$core$List$filter, _elm_lang$core$Tuple$second, list))));
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
+
 //import Native.Scheduler //
 
 var _elm_lang$core$Native_Time = function() {
@@ -8271,7 +8300,8 @@ return {
 	setInterval_: F2(setInterval_)
 };
 
-}();var _elm_lang$core$Task$onError = _elm_lang$core$Native_Scheduler.onError;
+}();
+var _elm_lang$core$Task$onError = _elm_lang$core$Native_Scheduler.onError;
 var _elm_lang$core$Task$andThen = _elm_lang$core$Native_Scheduler.andThen;
 var _elm_lang$core$Task$spawnCmd = F2(
 	function (router, _p0) {
@@ -8467,6 +8497,7 @@ var _elm_lang$core$Task$cmdMap = F2(
 			A2(_elm_lang$core$Task$map, tagger, _p11._0));
 	});
 _elm_lang$core$Native_Platform.effectManagers['Task'] = {pkg: 'elm-lang/core', init: _elm_lang$core$Task$init, onEffects: _elm_lang$core$Task$onEffects, onSelfMsg: _elm_lang$core$Task$onSelfMsg, tag: 'cmd', cmdMap: _elm_lang$core$Task$cmdMap};
+
 var _elm_lang$core$Time$setInterval = _elm_lang$core$Native_Time.setInterval_;
 var _elm_lang$core$Time$spawnHelp = F3(
 	function (router, intervals, processes) {
@@ -8654,9 +8685,11 @@ var _elm_lang$core$Time$subMap = F2(
 			});
 	});
 _elm_lang$core$Native_Platform.effectManagers['Time'] = {pkg: 'elm-lang/core', init: _elm_lang$core$Time$init, onEffects: _elm_lang$core$Time$onEffects, onSelfMsg: _elm_lang$core$Time$onSelfMsg, tag: 'sub', subMap: _elm_lang$core$Time$subMap};
+
 var _elm_lang$core$Process$kill = _elm_lang$core$Native_Scheduler.kill;
 var _elm_lang$core$Process$sleep = _elm_lang$core$Native_Scheduler.sleep;
 var _elm_lang$core$Process$spawn = _elm_lang$core$Native_Scheduler.spawn;
+
 var _debois$elm_mdl$Material_Helpers$noAttr = A2(_elm_lang$html$Html_Attributes$attribute, 'data-elm-mdl-noop', '');
 var _debois$elm_mdl$Material_Helpers$aria = F2(
 	function (name, value) {
@@ -8750,6 +8783,7 @@ var _debois$elm_mdl$Material_Helpers$filter = F3(
 				},
 				html));
 	});
+
 var _debois$elm_mdl$Material_Component$subs = F5(
 	function (ctor, get, subscriptions, lift, model) {
 		return _elm_lang$core$Platform_Sub$batch(
@@ -8887,6 +8921,7 @@ var _debois$elm_mdl$Material_Component$ButtonMsg = F2(
 	function (a, b) {
 		return {ctor: 'ButtonMsg', _0: a, _1: b};
 	});
+
 var _elm_lang$html$Html_Events$keyCode = A2(_elm_lang$core$Json_Decode$field, 'keyCode', _elm_lang$core$Json_Decode$int);
 var _elm_lang$html$Html_Events$targetChecked = A2(
 	_elm_lang$core$Json_Decode$at,
@@ -9001,6 +9036,7 @@ var _elm_lang$html$Html_Events$Options = F2(
 	function (a, b) {
 		return {stopPropagation: a, preventDefault: b};
 	});
+
 var _debois$elm_mdl$Material_Dispatch$split = F4(
 	function (k0, same, differ, xs) {
 		split:
@@ -9319,6 +9355,7 @@ var _debois$elm_mdl$Material_Dispatch$clear = function (_p30) {
 				decoders: {ctor: '[]'}
 			}));
 };
+
 var _debois$elm_mdl$Material_Options_Internal$addAttributes = F2(
 	function (summary, attrs) {
 		return A2(
@@ -9608,6 +9645,7 @@ var _debois$elm_mdl$Material_Options_Internal$CSS = function (a) {
 var _debois$elm_mdl$Material_Options_Internal$Class = function (a) {
 	return {ctor: 'Class', _0: a};
 };
+
 var _debois$elm_mdl$Material_Options$dispatch = function (_p0) {
 	return _debois$elm_mdl$Material_Options_Internal$Lift(
 		_elm_lang$core$Json_Decode$map(_p0));
@@ -9803,6 +9841,7 @@ var _debois$elm_mdl$Material_Options$styled = F2(
 	});
 var _debois$elm_mdl$Material_Options$div = _debois$elm_mdl$Material_Options$styled(_elm_lang$html$Html$div);
 var _debois$elm_mdl$Material_Options$span = _debois$elm_mdl$Material_Options$styled(_elm_lang$html$Html$span);
+
 var _debois$elm_mdl$Material_Ripple$styles = F2(
 	function (m, frame) {
 		var r = m.rect;
@@ -10127,6 +10166,7 @@ var _debois$elm_mdl$Material_Ripple$down = F2(
 				},
 				_debois$elm_mdl$Material_Ripple$geometryDecoder));
 	});
+
 var _debois$elm_mdl$Material_Button$_p0 = A3(
 	_debois$elm_mdl$Material_Component$indexed,
 	function (_) {
@@ -10293,6 +10333,7 @@ var _debois$elm_mdl$Material_Button$Config = F2(
 	function (a, b) {
 		return {ripple: a, link: b};
 	});
+
 var _debois$elm_mdl$Material_Icon$view = F2(
 	function (name, options) {
 		return A3(
@@ -10321,6 +10362,7 @@ var _debois$elm_mdl$Material_Icon$size24 = A2(_debois$elm_mdl$Material_Options$c
 var _debois$elm_mdl$Material_Icon$size18 = A2(_debois$elm_mdl$Material_Options$css, 'font-size', '18px');
 var _debois$elm_mdl$Material_Icon$defaultConfig = {};
 var _debois$elm_mdl$Material_Icon$Config = {};
+
 var _debois$elm_mdl$Material_Textfield$update = F3(
 	function (_p0, action, model) {
 		return A3(
@@ -10809,6 +10851,7 @@ var _debois$elm_mdl$Material_Textfield$view = F4(
 				}));
 	});
 var _debois$elm_mdl$Material_Textfield$render = A3(_debois$elm_mdl$Material_Component$render, _debois$elm_mdl$Material_Textfield$get, _debois$elm_mdl$Material_Textfield$view, _debois$elm_mdl$Material_Component$TextfieldMsg);
+
 var _elm_lang$dom$Native_Dom = function() {
 
 var fakeNode = {
@@ -10991,8 +11034,10 @@ return {
 };
 
 }();
+
 var _elm_lang$dom$Dom_LowLevel$onWindow = _elm_lang$dom$Native_Dom.onWindow;
 var _elm_lang$dom$Dom_LowLevel$onDocument = _elm_lang$dom$Native_Dom.onDocument;
+
 var _elm_lang$mouse$Mouse_ops = _elm_lang$mouse$Mouse_ops || {};
 _elm_lang$mouse$Mouse_ops['&>'] = F2(
 	function (t1, t2) {
@@ -11175,6 +11220,7 @@ var _elm_lang$mouse$Mouse$subMap = F2(
 			});
 	});
 _elm_lang$core$Native_Platform.effectManagers['Mouse'] = {pkg: 'elm-lang/mouse', init: _elm_lang$mouse$Mouse$init, onEffects: _elm_lang$mouse$Mouse$onEffects, onSelfMsg: _elm_lang$mouse$Mouse$onSelfMsg, tag: 'sub', subMap: _elm_lang$mouse$Mouse$subMap};
+
 var _debois$elm_mdl$Material_Menu_Geometry$Geometry = F5(
 	function (a, b, c, d, e) {
 		return {button: a, menu: b, container: c, offsetTops: d, offsetHeights: e};
@@ -11205,6 +11251,7 @@ var _debois$elm_mdl$Material_Menu_Geometry$decode = A6(
 				_debois$elm_dom$DOM$childNode,
 				1,
 				_debois$elm_dom$DOM$childNodes(_debois$elm_dom$DOM$offsetHeight)))));
+
 var _debois$elm_mdl$Material_Menu$toPx = function (_p0) {
 	return A3(
 		_elm_lang$core$Basics$flip,
@@ -12209,6 +12256,7 @@ var _debois$elm_mdl$Material_Menu$view = F4(
 			});
 	});
 var _debois$elm_mdl$Material_Menu$render = A3(_debois$elm_mdl$Material_Component$render, _debois$elm_mdl$Material_Menu$get, _debois$elm_mdl$Material_Menu$view, _debois$elm_mdl$Material_Component$MenuMsg);
+
 var _debois$elm_mdl$Material_Snackbar$enqueue = F2(
 	function (contents, model) {
 		return _elm_lang$core$Native_Utils.update(
@@ -12539,9 +12587,11 @@ var _debois$elm_mdl$Material_Snackbar$add = F2(
 		return _debois$elm_mdl$Material_Snackbar$tryDequeue(
 			A2(_debois$elm_mdl$Material_Snackbar$enqueue, contents, model));
 	});
+
 var _elm_lang$html$Html_Keyed$node = _elm_lang$virtual_dom$VirtualDom$keyedNode;
 var _elm_lang$html$Html_Keyed$ol = _elm_lang$html$Html_Keyed$node('ol');
 var _elm_lang$html$Html_Keyed$ul = _elm_lang$html$Html_Keyed$node('ul');
+
 var _elm_lang$window$Native_Window = function()
 {
 
@@ -12556,7 +12606,8 @@ return {
 	size: size
 };
 
-}();var _elm_lang$window$Window_ops = _elm_lang$window$Window_ops || {};
+}();
+var _elm_lang$window$Window_ops = _elm_lang$window$Window_ops || {};
 _elm_lang$window$Window_ops['&>'] = F2(
 	function (task1, task2) {
 		return A2(
@@ -12662,6 +12713,7 @@ var _elm_lang$window$Window$subMap = F2(
 			});
 	});
 _elm_lang$core$Native_Platform.effectManagers['Window'] = {pkg: 'elm-lang/window', init: _elm_lang$window$Window$init, onEffects: _elm_lang$window$Window$onEffects, onSelfMsg: _elm_lang$window$Window$onSelfMsg, tag: 'sub', subMap: _elm_lang$window$Window$subMap};
+
 var _debois$elm_mdl$Material_Layout$_p0 = {
 	ctor: '_Tuple2',
 	_0: function (_) {
@@ -13736,6 +13788,7 @@ var _debois$elm_mdl$Material_Layout$view = F4(
 			});
 	});
 var _debois$elm_mdl$Material_Layout$render = A3(_debois$elm_mdl$Material_Component$render1, _debois$elm_mdl$Material_Layout$get, _debois$elm_mdl$Material_Layout$view, _debois$elm_mdl$Material_Component$LayoutMsg);
+
 var _debois$elm_mdl$Material_Toggles$group = function (_p0) {
 	return _debois$elm_mdl$Material_Options$attribute(
 		_elm_lang$html$Html_Attributes$name(_p0));
@@ -14148,6 +14201,7 @@ var _debois$elm_mdl$Material_Toggles$viewRadio = F4(
 			});
 	});
 var _debois$elm_mdl$Material_Toggles$radio = A3(_debois$elm_mdl$Material_Component$render, _debois$elm_mdl$Material_Toggles$get, _debois$elm_mdl$Material_Toggles$viewRadio, _debois$elm_mdl$Material_Component$TogglesMsg);
+
 var _debois$elm_mdl$Material_Tooltip$element = function (elem) {
 	return _debois$elm_mdl$Material_Options_Internal$option(
 		function (options) {
@@ -14477,6 +14531,7 @@ var _debois$elm_mdl$Material_Tooltip$left = _debois$elm_mdl$Material_Options_Int
 			options,
 			{position: _debois$elm_mdl$Material_Tooltip$Left});
 	});
+
 var _debois$elm_mdl$Material_Tabs$activeTab = function (_p0) {
 	return _debois$elm_mdl$Material_Options_Internal$option(
 		F2(
@@ -14742,6 +14797,7 @@ var _debois$elm_mdl$Material_Tabs$textLabel = F2(
 				_1: {ctor: '[]'}
 			});
 	});
+
 var _debois$elm_mdl$Material$init = function (lift) {
 	return _debois$elm_mdl$Material_Layout$sub0(lift);
 };
@@ -14826,155 +14882,7 @@ var _debois$elm_mdl$Material$Model = F8(
 	function (a, b, c, d, e, f, g, h) {
 		return {button: a, textfield: b, menu: c, snackbar: d, layout: e, toggles: f, tooltip: g, tabs: h};
 	});
-var _debois$elm_mdl$Material_Card$stopClick = _debois$elm_mdl$Material_Options_Internal$attribute(
-	A2(_elm_lang$html$Html_Attributes$attribute, 'onclick', 'var event = arguments[0] || window.event; event.stopPropagation();'));
-var _debois$elm_mdl$Material_Card$block = function (block) {
-	var _p0 = block;
-	switch (_p0.ctor) {
-		case 'Title':
-			return A2(
-				_debois$elm_mdl$Material_Options$div,
-				{
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-card__title'),
-					_1: _p0._0
-				},
-				_p0._1);
-		case 'Media':
-			return A2(
-				_debois$elm_mdl$Material_Options$div,
-				{
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-card__media'),
-					_1: _p0._0
-				},
-				_p0._1);
-		case 'SupportingText':
-			return A2(
-				_debois$elm_mdl$Material_Options$div,
-				{
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-card__supporting-text'),
-					_1: _p0._0
-				},
-				_p0._1);
-		case 'Actions':
-			return A2(
-				_debois$elm_mdl$Material_Options$div,
-				{
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-card__actions'),
-					_1: {ctor: '::', _0: _debois$elm_mdl$Material_Card$stopClick, _1: _p0._0}
-				},
-				_p0._1);
-		default:
-			return A2(
-				_debois$elm_mdl$Material_Options$div,
-				{
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-card__menu'),
-					_1: {ctor: '::', _0: _debois$elm_mdl$Material_Card$stopClick, _1: _p0._0}
-				},
-				_p0._1);
-	}
-};
-var _debois$elm_mdl$Material_Card$view = F2(
-	function (styling, views) {
-		return A2(
-			_debois$elm_mdl$Material_Options$div,
-			{
-				ctor: '::',
-				_0: _debois$elm_mdl$Material_Options$many(styling),
-				_1: {
-					ctor: '::',
-					_0: _debois$elm_mdl$Material_Options$cs('mdl-card'),
-					_1: {
-						ctor: '::',
-						_0: A2(_debois$elm_mdl$Material_Options$css, 'min-height', '0px'),
-						_1: {ctor: '[]'}
-					}
-				}
-			},
-			A2(_elm_lang$core$List$map, _debois$elm_mdl$Material_Card$block, views));
-	});
-var _debois$elm_mdl$Material_Card$subhead = function (styling) {
-	return _debois$elm_mdl$Material_Options$span(
-		{
-			ctor: '::',
-			_0: _debois$elm_mdl$Material_Options$cs('mdl-card__subtitle-text'),
-			_1: {
-				ctor: '::',
-				_0: A2(_debois$elm_mdl$Material_Options$css, 'padding-top', '8px'),
-				_1: styling
-			}
-		});
-};
-var _debois$elm_mdl$Material_Card$head = function (styling) {
-	return A2(
-		_debois$elm_mdl$Material_Options$styled,
-		_elm_lang$html$Html$h1,
-		{
-			ctor: '::',
-			_0: _debois$elm_mdl$Material_Options$cs('mdl-card__title-text'),
-			_1: {
-				ctor: '::',
-				_0: A2(_debois$elm_mdl$Material_Options$css, 'align-self', 'flex-start'),
-				_1: styling
-			}
-		});
-};
-var _debois$elm_mdl$Material_Card$expand = _debois$elm_mdl$Material_Options$cs('mdl-card--expand');
-var _debois$elm_mdl$Material_Card$border = _debois$elm_mdl$Material_Options$cs('mdl-card--border');
-var _debois$elm_mdl$Material_Card$Actions = F2(
-	function (a, b) {
-		return {ctor: 'Actions', _0: a, _1: b};
-	});
-var _debois$elm_mdl$Material_Card$actions = _debois$elm_mdl$Material_Card$Actions;
-var _debois$elm_mdl$Material_Card$SupportingText = F2(
-	function (a, b) {
-		return {ctor: 'SupportingText', _0: a, _1: b};
-	});
-var _debois$elm_mdl$Material_Card$text = _debois$elm_mdl$Material_Card$SupportingText;
-var _debois$elm_mdl$Material_Card$Media = F2(
-	function (a, b) {
-		return {ctor: 'Media', _0: a, _1: b};
-	});
-var _debois$elm_mdl$Material_Card$media = _debois$elm_mdl$Material_Card$Media;
-var _debois$elm_mdl$Material_Card$Menu = F2(
-	function (a, b) {
-		return {ctor: 'Menu', _0: a, _1: b};
-	});
-var _debois$elm_mdl$Material_Card$menu = F2(
-	function (styling, block) {
-		return A2(_debois$elm_mdl$Material_Card$Menu, styling, block);
-	});
-var _debois$elm_mdl$Material_Card$Title = F2(
-	function (a, b) {
-		return {ctor: 'Title', _0: a, _1: b};
-	});
-var _debois$elm_mdl$Material_Card$title = F2(
-	function (styling, block) {
-		return A2(
-			_debois$elm_mdl$Material_Card$Title,
-			{
-				ctor: '::',
-				_0: _debois$elm_mdl$Material_Options$many(styling),
-				_1: {
-					ctor: '::',
-					_0: A2(_debois$elm_mdl$Material_Options$css, 'justify-content', 'flex-end'),
-					_1: {
-						ctor: '::',
-						_0: A2(_debois$elm_mdl$Material_Options$css, 'flex-direction', 'column'),
-						_1: {
-							ctor: '::',
-							_0: A2(_debois$elm_mdl$Material_Options$css, 'align-items', 'flex-start'),
-							_1: {ctor: '[]'}
-						}
-					}
-				}
-			},
-			block);
-	});
+
 var _debois$elm_mdl$Material_Color$text = function (_p0) {
 	var _p1 = _p0;
 	return _debois$elm_mdl$Material_Options$cs(
@@ -15354,6 +15262,7 @@ var _debois$elm_mdl$Material_Color$primaryDark = _debois$elm_mdl$Material_Color$
 var _debois$elm_mdl$Material_Color$primaryContrast = _debois$elm_mdl$Material_Color$C('primary-contrast');
 var _debois$elm_mdl$Material_Color$accent = _debois$elm_mdl$Material_Color$C('accent');
 var _debois$elm_mdl$Material_Color$accentContrast = _debois$elm_mdl$Material_Color$C('accent-contrast');
+
 //import Maybe, Native.List //
 
 var _elm_lang$core$Native_Regex = function() {
@@ -15473,6 +15382,7 @@ return {
 };
 
 }();
+
 var _elm_lang$core$Regex$split = _elm_lang$core$Native_Regex.split;
 var _elm_lang$core$Regex$replace = _elm_lang$core$Native_Regex.replace;
 var _elm_lang$core$Regex$find = _elm_lang$core$Native_Regex.find;
@@ -15489,6 +15399,7 @@ var _elm_lang$core$Regex$AtMost = function (a) {
 	return {ctor: 'AtMost', _0: a};
 };
 var _elm_lang$core$Regex$All = {ctor: 'All'};
+
 var _debois$elm_mdl$Material_Scheme$scheme = F2(
 	function (primary, accent) {
 		return A2(
@@ -15550,6 +15461,7 @@ var _debois$elm_mdl$Material_Scheme$topWithScheme = F3(
 var _debois$elm_mdl$Material_Scheme$top = function (content) {
 	return A3(_debois$elm_mdl$Material_Scheme$topWithScheme, _debois$elm_mdl$Material_Color$Grey, _debois$elm_mdl$Material_Color$Grey, content);
 };
+
 var _elm_lang$core$Color$fmod = F2(
 	function (f, n) {
 		var integer = _elm_lang$core$Basics$floor(f);
@@ -15715,6 +15627,7 @@ var _elm_lang$core$Color$Linear = F3(
 		return {ctor: 'Linear', _0: a, _1: b, _2: c};
 	});
 var _elm_lang$core$Color$linear = _elm_lang$core$Color$Linear;
+
 var _elm_lang$core$Random$onSelfMsg = F3(
 	function (_p1, _p0, seed) {
 		return _elm_lang$core$Task$succeed(seed);
@@ -16093,6 +16006,7 @@ var _elm_lang$core$Random$cmdMap = F2(
 			A2(_elm_lang$core$Random$map, func, _p79._0));
 	});
 _elm_lang$core$Native_Platform.effectManagers['Random'] = {pkg: 'elm-lang/core', init: _elm_lang$core$Random$init, onEffects: _elm_lang$core$Random$onEffects, onSelfMsg: _elm_lang$core$Random$onSelfMsg, tag: 'cmd', cmdMap: _elm_lang$core$Random$cmdMap};
+
 var _elm_lang$svg$Svg$map = _elm_lang$virtual_dom$VirtualDom$map;
 var _elm_lang$svg$Svg$text = _elm_lang$virtual_dom$VirtualDom$text;
 var _elm_lang$svg$Svg$svgNamespace = A2(
@@ -16179,6 +16093,7 @@ var _elm_lang$svg$Svg$filter = _elm_lang$svg$Svg$node('filter');
 var _elm_lang$svg$Svg$script = _elm_lang$svg$Svg$node('script');
 var _elm_lang$svg$Svg$style = _elm_lang$svg$Svg$node('style');
 var _elm_lang$svg$Svg$view = _elm_lang$svg$Svg$node('view');
+
 var _elm_lang$svg$Svg_Attributes$writingMode = _elm_lang$virtual_dom$VirtualDom$attribute('writing-mode');
 var _elm_lang$svg$Svg_Attributes$wordSpacing = _elm_lang$virtual_dom$VirtualDom$attribute('word-spacing');
 var _elm_lang$svg$Svg_Attributes$visibility = _elm_lang$virtual_dom$VirtualDom$attribute('visibility');
@@ -16432,6 +16347,7 @@ var _elm_lang$svg$Svg_Attributes$additive = _elm_lang$virtual_dom$VirtualDom$att
 var _elm_lang$svg$Svg_Attributes$accumulate = _elm_lang$virtual_dom$VirtualDom$attribute('accumulate');
 var _elm_lang$svg$Svg_Attributes$accelerate = _elm_lang$virtual_dom$VirtualDom$attribute('accelerate');
 var _elm_lang$svg$Svg_Attributes$accentHeight = _elm_lang$virtual_dom$VirtualDom$attribute('accent-height');
+
 var _elm_lang$svg$Svg_Events$on = _elm_lang$virtual_dom$VirtualDom$on;
 var _elm_lang$svg$Svg_Events$simpleOn = F2(
 	function (name, msg) {
@@ -16459,6 +16375,7 @@ var _elm_lang$svg$Svg_Events$onMouseMove = _elm_lang$svg$Svg_Events$simpleOn('mo
 var _elm_lang$svg$Svg_Events$onMouseOut = _elm_lang$svg$Svg_Events$simpleOn('mouseout');
 var _elm_lang$svg$Svg_Events$onMouseOver = _elm_lang$svg$Svg_Events$simpleOn('mouseover');
 var _elm_lang$svg$Svg_Events$onMouseUp = _elm_lang$svg$Svg_Events$simpleOn('mouseup');
+
 var _fredcy$elm_parseint$ParseInt$charFromInt = function (i) {
 	return (_elm_lang$core$Native_Utils.cmp(i, 10) < 0) ? _elm_lang$core$Char$fromCode(
 		i + _elm_lang$core$Char$toCode(
@@ -16580,6 +16497,7 @@ var _fredcy$elm_parseint$ParseInt$parseIntRadix = F2(
 var _fredcy$elm_parseint$ParseInt$parseInt = _fredcy$elm_parseint$ParseInt$parseIntRadix(10);
 var _fredcy$elm_parseint$ParseInt$parseIntOct = _fredcy$elm_parseint$ParseInt$parseIntRadix(8);
 var _fredcy$elm_parseint$ParseInt$parseIntHex = _fredcy$elm_parseint$ParseInt$parseIntRadix(16);
+
 var _eskimoblood$elm_color_extra$Color_Convert$xyzToColor = function (_p0) {
 	var _p1 = _p0;
 	var c = function (ch) {
@@ -16929,6 +16847,7 @@ var _eskimoblood$elm_color_extra$Color_Convert$Lab = F3(
 	function (a, b, c) {
 		return {l: a, a: b, b: c};
 	});
+
 var _rtfeldman$hex$Hex$toString = function (num) {
 	return _elm_lang$core$String$fromList(
 		(_elm_lang$core$Native_Utils.cmp(num, 0) < 0) ? {
@@ -17123,6 +17042,7 @@ var _rtfeldman$hex$Hex$fromString = function (str) {
 		return A2(_elm_lang$core$Result$mapError, formatError, result);
 	}
 };
+
 var _simonh1000$elm_colorpicker$ColorPicker$decodePoint = A3(
 	_elm_lang$core$Json_Decode$map2,
 	F2(
@@ -17895,6 +17815,7 @@ var _simonh1000$elm_colorpicker$ColorPicker$view = F2(
 				}
 			});
 	});
+
 var _user$project$Utils$index = function (lst) {
 	return A2(
 		_elm_lang$core$List$range,
@@ -17966,6 +17887,7 @@ var _user$project$Utils$replace = F3(
 			return lst;
 		}
 	});
+
 var _user$project$Main$model = {
 	colors: {
 		ctor: '::',
@@ -18393,6 +18315,7 @@ var _user$project$Main$main = _elm_lang$html$Html$program(
 		subscriptions: _elm_lang$core$Basics$always(_elm_lang$core$Platform_Sub$none),
 		update: _user$project$Main$update
 	})();
+
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
 if (typeof _user$project$Main$main !== 'undefined') {
@@ -18428,4 +18351,4 @@ for (var publicModule in Elm)
 }
 
 }).call(this);
-</script></head><body><script type="text/javascript">Elm.Main.fullscreen()</script></body></html>
+

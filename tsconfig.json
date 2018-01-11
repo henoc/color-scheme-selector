@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es5",
+		"outDir": "out",
+		"lib": [
+			"es6", "dom"
+		],
+		"sourceMap": true,
+		"rootDir": "src",
+		"noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitUseStrict": true,
+    "strictNullChecks": true
+	},
+	"include": [
+		"src/**/*.ts"
+	]
+}
