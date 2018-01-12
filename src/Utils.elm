@@ -1,4 +1,4 @@
-module Utils exposing (..)
+port module Utils exposing (..)
 
 replace : List a -> Int -> a -> List a
 replace lst k item = case lst of
@@ -31,3 +31,6 @@ getAt lst k = case lst of
 
 index : List a -> List Int
 index lst = List.range 0 (List.length lst - 1)
+
+port saveColorScheme: List String -> Cmd msg
+port loadColorScheme: (List String -> msg) -> Sub msg

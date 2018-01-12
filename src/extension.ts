@@ -13,11 +13,13 @@ export function activate(context: vscode.ExtensionContext) {
   let externals = readResource("externals.js");
 
   class TextDocumentContentProvider implements vscode.TextDocumentContentProvider {
+    public colors: string[] = ["#ca6225", "#217583", "#a5c688", "#cfe29f", "#b0a6a5"];
     public provideTextDocumentContent(uri: vscode.Uri): string {
       const html = render(viewer, {
         bundle: bundle,
         style: style,
-        externals: externals
+        externals: externals,
+        colors: JSON.stringify(this.colors)
       });
       return html;
     }
@@ -31,6 +33,12 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.window.showErrorMessage(reason);
     });
   }));
+
+  disposables.push(
+    vscode.commands.registerCommand("colorSchemeSelector.saveColorScheme", (colors: string[]) => {
+      provider.colors = colors;
+    })
+  );
 
   context.subscriptions.push(...disposables);
 }

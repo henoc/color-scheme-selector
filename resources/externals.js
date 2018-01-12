@@ -10,4 +10,22 @@ setTimeout(() => {
     icon.style.color = textCss.color;
   }
   text.remove();
-}, 0);
+}, 100);
+
+// colorsの自動読み込み
+const colors = document.getElementById("colors");
+app.ports.loadColorScheme.send(JSON.parse(colors.textContent));
+colors.remove();
+
+// colorsの保存
+app.ports.saveColorScheme.subscribe(function(colors) {
+  const name = "colorSchemeSelector.saveColorScheme";
+  const args = [colors];
+  window.parent.postMessage(
+    {
+      command: "did-click-link",
+      data: `command:${name}?${encodeURIComponent(JSON.stringify(args))}`
+    },
+    "file://"
+  );
+});

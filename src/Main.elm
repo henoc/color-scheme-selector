@@ -25,7 +25,7 @@ type alias Model =
 model: Model
 model =
   {
-    colors = [Color.darkGray, Color.lightGreen, Color.lightBlue, Color.lightBrown, Color.lightYellow],
+    colors = [],
     mdl = Material.model,
     colorPicker = ColorPicker.empty,
     viewColorPicker = Nothing
@@ -42,6 +42,7 @@ type Msg = Mdl (Material.Msg Msg)
   | ColorPickerMsg Int ColorPicker.Msg
   | ViewColorPicker Int
   | HideColorPicker
+  | LoadColorScheme (List String)
 
 update: Msg -> Model -> (Model, Cmd Msg)
 update msg model =
@@ -58,17 +59,17 @@ update msg model =
       let
         newColors = Utils.replace model.colors panelNo newColor
       in
-      {model | colors = newColors} ! []
+      {model | colors = newColors} ! [Utils.saveColorScheme (List.map colorToHex newColors)]
     InsertNewColor panelNo newColor ->
       let
         newColors = Utils.insert model.colors panelNo newColor
       in
-      {model | colors = newColors} ! []
+      {model | colors = newColors} ! [Utils.saveColorScheme (List.map colorToHex newColors)]
     RemoveColor panelNo ->
       let
         newColors = Utils.remove model.colors panelNo
       in
-      {model | colors = newColors} ! []
+      {model | colors = newColors} ! [Utils.saveColorScheme (List.map colorToHex newColors)]
     ColorPickerMsg panelNo msg ->
       let
         defaultColor = Utils.getAt model.colors panelNo
@@ -83,6 +84,11 @@ update msg model =
       {model | viewColorPicker = Just panelNo} ! []
     HideColorPicker ->
       {model | viewColorPicker = Nothing} ! []
+    LoadColorScheme colorStrings ->
+      let
+        newColors = List.map (hexToColor >> Result.withDefault Color.black) colorStrings
+      in
+      {model | colors = newColors} ! []
 
 
 -- VIEW
@@ -164,6 +170,9 @@ colorPanels model counter =
   in
   loop model.colors counter 0
 
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Utils.loadColorScheme LoadColorScheme
 
 main: Program Never Model Msg
 main =
@@ -171,6 +180,6 @@ main =
     {
       init = model ! [],
       view = view,
-      subscriptions = always Sub.none,
+      subscriptions = subscriptions,
       update = update
     }
